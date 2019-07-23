@@ -5,5 +5,5 @@
 # Используемые технологии
 Kotlin, Dagger 2, Picasso, Retrofit 2.
 # Вид приложения
-![Список элементов](Screenshot_2019-07-24-00-49-41-687_com.bonusgaming.homework_1.png)
-![Отдельный элмент](Screenshot_2019-07-24-00-50-02-384_com.bonusgaming.homework_1.png)
+[Список элементов](Screenshot_2019-07-24-00-49-41-687_com.bonusgaming.homework_1.png "Список элементов")
+[Отдельный элмент](Screenshot_2019-07-24-00-50-02-384_com.bonusgaming.homework_1.png "Отдельный элмент")
