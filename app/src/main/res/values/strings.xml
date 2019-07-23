@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">HomeWork_1</string>
+    <string name="key" tools:ignore="TypographyDashes">7712536-34a421b4c6cbab870143842d3</string>
+    <string name="item_list_description">Item List Description</string>
+    <string name="author_name">Author Name</string>
+    <string name="likes">1234</string>
+    <string name="main_image_description">Main Image Description</string>
+    <string name="mock_text_author_name">MOCK_TEXT_AUTHOR_NAME</string>
+</resources>
