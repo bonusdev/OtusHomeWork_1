@@ -38,12 +38,12 @@ class Model : Contract.BaseModel<Item> {
     /* Extension функция для преобразования элементов */
     private fun Hit.fillItem(): Item {
         return Item(
-            this.webformatURL,
-            this.largeImageURL,
-            this.user,
-            this.userImageURL,
-            this.likes,
-            this.views
+            webformatURL,
+            largeImageURL,
+            user,
+            userImageURL,
+            likes,
+            views
         )
     }
 }
