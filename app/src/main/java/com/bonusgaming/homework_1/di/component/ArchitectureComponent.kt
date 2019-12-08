@@ -12,11 +12,8 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ViewModelModule::class, ApiKeyModule::class, RecyclerAdapterModule::class, ModelModule::class])
-interface AppComponent {
-    fun getMainViewModel(): MainViewModel
-    fun getWebRepo(): WebRepo
-    fun getApiKey(): String
-    fun getModel(): Model
-    fun getListImpl(): ListAdapterImpl
+@Component
+interface ArchitectureComponent {
+    fun inject(model: Model)
 }
+

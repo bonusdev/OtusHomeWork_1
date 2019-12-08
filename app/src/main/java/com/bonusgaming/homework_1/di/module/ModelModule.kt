@@ -8,14 +8,8 @@ import javax.inject.Singleton
 
 @Module
 class ModelModule {
-
     @Singleton
     @Provides
     fun getModel() = Model()
-
-    @Singleton
-    @Provides
-    fun getWebRepo() = WebRepo()
-
 
 }

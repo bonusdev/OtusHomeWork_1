@@ -3,9 +3,12 @@ package com.bonusgaming.homework_1.data
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /* Класс для взаимодействия через Retrofit */
-class WebRepo {
+@Singleton
+class WebRepo @Inject constructor()  {
 
     var apiInterface: ApiInterface
         private set
