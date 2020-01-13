@@ -5,6 +5,7 @@ import com.bonusgaming.homework_1.data.pojo.ResponseData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
+import javax.inject.Inject
 
 /* Интерфейс для Retrofit */
 interface ApiInterface {
@@ -17,7 +18,6 @@ interface ApiInterface {
      *   https://pixabay.com/api/?key={KEY}&q=&pretty=true&image_type=photo&safesearch=true&orientation=vertical&category=&colors=&order=&page=1&per_page=30
      *
      ***/
-
 
     /* Получению json */
     @GET("/api/")

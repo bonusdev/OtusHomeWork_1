@@ -6,11 +6,16 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.cardview.widget.CardView
 import com.bonusgaming.homework_1.App
+import com.bonusgaming.homework_1.MainViewModel
 import com.bonusgaming.homework_1.R
 import com.bonusgaming.homework_1.TAG
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ListAdapterImpl() : BaseListAdapter<Item>() {
+@Singleton
+class ListAdapterImpl @Inject constructor() : BaseListAdapter<Item>() {
+
     init {
         Log.e(TAG, "ListAdapterImpl init block")
     }
@@ -22,6 +27,9 @@ class ListAdapterImpl() : BaseListAdapter<Item>() {
 
     class HolderImpl(view: View) : BaseListAdapter.ItemHolder<Item>(view) {
 
+        @Inject
+        lateinit var viewModel: MainViewModel
+
         private val imagePreview: AppCompatImageView = view.findViewById(R.id.image_preview)
         private val textNameAuthor: TextView = view.findViewById(R.id.author_name)
         private val textLikes: TextView = view.findViewById(R.id.likes)
@@ -29,10 +37,11 @@ class ListAdapterImpl() : BaseListAdapter<Item>() {
         private lateinit var item: Item
 
         init {
+            App.appComponent.inject(this)
             cardView.isClickable = true
             cardView.setOnClickListener(View.OnClickListener {
-                Log.e(TAG,"blabla click${App.appComponent.getMainViewModel().data}")
-                App.appComponent.getMainViewModel().onClick(item)
+                Log.e(TAG, "blabla click${viewModel.model}")
+                viewModel.onClick(item)
             })
         }
 

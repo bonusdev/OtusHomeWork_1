@@ -4,22 +4,23 @@ import android.util.Log
 import com.bonusgaming.homework_1.data.WebRepo
 import com.bonusgaming.homework_1.data.pojo.Hit
 import com.bonusgaming.homework_1.data.pojo.ResponseData
-import com.bonusgaming.homework_1.di.component.DaggerAppComponent
-import com.bonusgaming.homework_1.di.component.DaggerArchitectureComponent
 import com.bonusgaming.homework_1.list_items.Item
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class Model : Contract.BaseModel<Item> {
+@Singleton
+class Model @Inject constructor() : Contract.BaseModel<Item> {
 
     @Inject
-    lateinit var webRepo:WebRepo
+    lateinit var webRepo: WebRepo
 
     override var currentItem: Item = Item()
 
     init {
-        DaggerArchitectureComponent.create().inject(this)
+        App.appComponent.inject(this)
         Log.e(TAG, "init MODEL $currentItem")
     }
 
@@ -28,19 +29,17 @@ class Model : Contract.BaseModel<Item> {
 
         Log.e(TAG, "getDataList called")
 
-        val result: MutableList<Item> = mutableListOf()
-        val response: Response<ResponseData> = webRepo.apiInterface
-            .getRestApiData(page = currentPage)
-            .execute()
-
-        Log.e(TAG, "response.isSuccessful = ${response.isSuccessful}")
-
-        if (response.isSuccessful) {
-            Log.e(TAG, "hits.size = ${response.body()?.hits?.size} ")
-            response.body()?.hits?.forEach { result.add(it.fillItem()) }
+        var response: Response<ResponseData>? = null
+        withContext(Dispatchers.IO) {
+            response = webRepo.apiInterface
+                .getRestApiData(page = currentPage)
+                .execute()
         }
+        Log.e(TAG, "response.isSuccessful = ${response?.isSuccessful}")
 
-        return result
+        return if (response?.isSuccessful == true) {
+            response!!.body()!!.hits.map { it.fillItem() }
+        } else emptyList()
     }
 
     /* Extension функция для преобразования элементов */

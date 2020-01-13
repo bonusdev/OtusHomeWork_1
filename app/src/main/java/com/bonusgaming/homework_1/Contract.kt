@@ -11,8 +11,6 @@ sealed class Contract {
 
     abstract class BaseActivityView : AppCompatActivity() {
 
-        lateinit var viewModel: BaseViewModel
-
         /* Метод для нициализации */
         abstract fun init()
 
@@ -20,7 +18,6 @@ sealed class Contract {
         abstract fun initViews()
 
         override fun onCreate(savedInstanceState: Bundle?) {
-            viewModel = App.appComponent.getMainViewModel()
             super.onCreate(savedInstanceState)
             initViews()
             init()
@@ -28,12 +25,8 @@ sealed class Contract {
     }
 
     abstract class BaseViewModel : ViewModel() {
-        lateinit var data: BaseModel<Item>
-
         abstract fun getCurrentItem(): Item?
-
         abstract fun onClick(item: Item)
-
         abstract fun getListItemsLiveData(): LiveData<List<Item>>
         abstract fun getOnClickLiveData(): LiveData<Item>
     }
@@ -43,6 +36,4 @@ sealed class Contract {
 
         suspend fun getDataList(currentPage: Int): List<T>
     }
-
-
 }
